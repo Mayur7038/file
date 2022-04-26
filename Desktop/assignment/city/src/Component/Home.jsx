@@ -2,32 +2,31 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField"
-
-
+import {useDispatch , useSelector} from "react-redux"
+import {getCensusData , deleteData} from "../Redux/action"
 
 export const Home = ()=>{
 
-    let [Data ,setDate] = useState([]);
 
+    const dispatch = useDispatch();
+    
     useEffect(()=>{
-       getData();
+        getData();
     },[]);
-
-
+    
+    
+    const Data = useSelector((store)=> store.data);
+    
     const getData = ()=>{
-
-        axios.get("http://localhost:8080/data").then(({data})=>{
-            setDate(data);
-        })
-
+        
+        dispatch(getCensusData())
+        
     }
-
+    
     const handleDelete=(id)=>{
 
-        axios.delete(`http://localhost:8080/data/${id}`).then(()=>{
-            getData();
-        })
-
+        
+        dispatch(deleteData(id));
 
     }
 
@@ -46,22 +45,12 @@ export const Home = ()=>{
     const [ Country , setCountry] = useState("");
 
     const baseCountry=()=>{
-
-
-
         axios.get("http://localhost:8080/data").then(({data})=>{
-
             const b = data.filter((el)=>{
                 return (el.Country === Country)
             })
-
             setDate(b);
-
-
         })
-
-       
-
     }
 
     return <>
@@ -95,7 +84,6 @@ export const Home = ()=>{
                    <td> Country </td>
                    <td> City </td>
                    <td> Population </td>
-                   {/* <td> Edit </td> */}
                    <td>  Delete </td>
                </tr>
            </thead>
@@ -110,7 +98,6 @@ export const Home = ()=>{
 
                            <td> {elem.City} </td>
                            <td> {elem.Population} </td>
-                           {/* <td> <button> Edit  </button> </td> */}
                            <td onClick={()=>  handleDelete(elem.id) } > <button className="cityFilter1" > Delete </button> </td>
                        </tr>
                    })

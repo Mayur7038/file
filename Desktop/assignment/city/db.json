@@ -1,28 +1,22 @@
 {
   "data": [
     {
-      "id": 1,
       "Country": "India",
-      "City": "Yavatmal",
-      "Population": "19000000"
+      "City": "Nagpur",
+      "Population": "68464654",
+      "id": 1
     },
     {
-      "id": 2,
+      "Country": "India",
+      "City": "Delhi",
+      "Population": "8656555",
+      "id": 2
+    },
+    {
       "Country": "China",
-      "City": "Yavatmal",
-      "Population": "15000000"
-    },
-    {
-      "Country": "Pakistan",
-      "City": "Lahore",
-      "Population": "555555555555",
+      "City": "Shanghai",
+      "Population": "6595353",
       "id": 3
-    },
-    {
-      "Country": "America",
-      "City": "DC",
-      "Population": "5445",
-      "id": 4
     }
   ]
 }
